@@ -121,9 +121,11 @@ body {
   border-radius: 8px;
   font-size: 0.9rem;
   font-weight: 500;
+  line-height: 1.5;
   text-decoration: none;
   transition: all 0.2s ease;
   border: 1.5px solid transparent;
+  box-sizing: border-box;
 }
 
 .btn-primary {
@@ -392,27 +394,14 @@ body {
   border-bottom: 1px solid var(--border);
 }
 
-/* Group header row */
-.results-table thead tr:first-child th {
-  background: #0f172a;
-  color: #94a3b8;
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding-top: 0.9rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid #1e293b;
-}
-
-/* Metric name row */
-.results-table thead tr:last-child th {
+/* Single header row */
+.results-table thead th {
   background: #1e293b;
   color: #e2e8f0;
   font-weight: 600;
   font-size: 0.78rem;
-  padding-top: 0.4rem;
-  padding-bottom: 0.7rem;
+  padding: 0.75rem 0.9rem;
+  border-bottom: 2px solid #334155;
 }
 
 .results-table .group-header {

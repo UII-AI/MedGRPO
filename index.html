@@ -133,41 +133,42 @@
 <section class="section">
   <div class="container narrow">
     <h2 class="section-title">Key Innovations</h2>
+    <p class="section-subtitle">Two technical contributions that enable stable multi-dataset RL training</p>
 
-    <div style="margin-top: 2rem;">
-      <h3 style="color: #1e40af; margin-bottom: 1rem;"><i class="fas fa-balance-scale"></i> 1. Cross-Dataset Reward Normalization</h3>
+    <div class="innovation-card" style="border-left: 4px solid #2563eb;">
+      <h3 style="color: #1e40af; margin-bottom: 1rem; font-size: 1.05rem;"><i class="fas fa-balance-scale" style="margin-right: 0.5rem;"></i>Cross-Dataset Reward Normalization</h3>
       <p style="line-height: 1.8; color: #374151; margin-bottom: 1rem;">
         Standard RL fails on heterogeneous medical datasets due to vastly different difficulty levels (e.g., CoPESD STG median mIoU ~0.5 vs EgoSurgery STG ~0.12).
         We introduce logistic normalization that maps each dataset's median performance to a fixed reward value (0.5):
       </p>
-      <div style="background: #f3f4f6; padding: 1rem; border-radius: 6px; font-family: 'Source Code Pro', monospace; font-size: 0.9rem; overflow-x: auto; margin: 1rem 0;">
-        r_norm(x) = 1 / (1 + exp(-k × (x - p50) / IQR))
+      <div style="background: #f1f5f9; padding: 0.9rem 1.2rem; border-radius: 8px; font-family: 'Source Code Pro', monospace; font-size: 0.88rem; margin: 1rem 0; text-align: center; color: #1e293b;">
+        r<sub>norm</sub>(x) = 1 / (1 + exp(-k &middot; (x - p<sub>50</sub>) / IQR))
       </div>
-      <p style="line-height: 1.8; color: #374151;">
-        <strong>Benefits:</strong> (1) <em>Median fairness</em> - equal rewards at median performance across all datasets,
-        (2) <em>Smooth gradients</em> - non-zero derivatives everywhere,
-        (3) <em>Outlier robustness</em> - IQR-based scaling,
-        (4) <em>Bounded output</em> - compatible with GRPO group normalization.
+      <p style="line-height: 1.8; color: #374151; font-size: 0.92rem;">
+        <strong>Benefits:</strong> (1) <em>Median fairness</em> &mdash; equal rewards at median performance across all datasets,
+        (2) <em>Smooth gradients</em> &mdash; non-zero derivatives everywhere,
+        (3) <em>Outlier robustness</em> &mdash; IQR-based scaling,
+        (4) <em>Bounded output</em> &mdash; compatible with GRPO group normalization.
       </p>
     </div>
 
-    <div style="margin-top: 3rem;">
-      <h3 style="color: #059669; margin-bottom: 1rem;"><i class="fas fa-stethoscope"></i> 2. Medical LLM Judge</h3>
+    <div class="innovation-card" style="border-left: 4px solid #059669;">
+      <h3 style="color: #047857; margin-bottom: 1rem; font-size: 1.05rem;"><i class="fas fa-stethoscope" style="margin-right: 0.5rem;"></i>Medical LLM Judge</h3>
       <p style="line-height: 1.8; color: #374151; margin-bottom: 1rem;">
-        Standard semantic similarity fails to capture clinical correctness. For example, "The tool grasps tissue in the upper area" vs
-        "The grasper dissects the cystic duct in the upper right quadrant" achieve high similarity (~0.82) but differ critically in medical accuracy.
+        Standard semantic similarity fails to capture clinical correctness. For example, <em>"The tool grasps tissue in the upper area"</em> vs
+        <em>"The grasper dissects the cystic duct in the upper right quadrant"</em> achieve high similarity (~0.82) but differ critically in medical accuracy.
       </p>
-      <p style="line-height: 1.8; color: #374151; margin-bottom: 1rem;">
+      <p style="line-height: 1.8; color: #374151; margin-bottom: 0.75rem;">
         Our GPT-4.1-based judge uses <strong>comparative similarity scoring</strong> across five clinical dimensions:
       </p>
-      <ul style="line-height: 1.8; color: #374151; margin-left: 1.5rem;">
-        <li><strong>Medical terminology precision:</strong> Clinical terms vs lay language</li>
-        <li><strong>Instrument & anatomy identification:</strong> Specific tools and structures</li>
-        <li><strong>Specificity vs vagueness:</strong> Precise details vs generic descriptions</li>
-        <li><strong>Clinical procedure context:</strong> Workflow and safety awareness</li>
-        <li><strong>Action & state accuracy:</strong> Surgical actions and tissue states</li>
+      <ul style="line-height: 2; color: #374151; margin-left: 1.5rem; font-size: 0.92rem;">
+        <li><strong>Medical terminology precision</strong> &mdash; Clinical terms vs lay language</li>
+        <li><strong>Instrument &amp; anatomy identification</strong> &mdash; Specific tools and structures</li>
+        <li><strong>Specificity vs vagueness</strong> &mdash; Precise details vs generic descriptions</li>
+        <li><strong>Clinical procedure context</strong> &mdash; Workflow and safety awareness</li>
+        <li><strong>Action &amp; state accuracy</strong> &mdash; Surgical actions and tissue states</li>
       </ul>
-      <p style="line-height: 1.8; color: #374151; margin-top: 1rem;">
+      <p style="line-height: 1.8; color: #374151; margin-top: 1rem; font-size: 0.92rem;">
         <strong>Hybrid design:</strong> Combine LLM judge (50%) with semantic similarity (50%) for robust evaluation capturing both clinical correctness and overall coherence.
       </p>
     </div>
@@ -356,12 +357,12 @@
     <div class="qual-item">
       <h3 class="qual-title">Region Captioning</h3>
       <p class="qual-desc">MedGRPO produces precise instrument identification, accurate spatial localization, and clinical context understanding compared to GPT-4.1, Gemini-2.5-Flash, and the SFT baseline.</p>
-      <div style="background: #f9fafb; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;">
-        <p style="color: #374151; margin-bottom: 0.5rem;"><strong>Ground Truth:</strong> "The grasper consistently grips and retracts the gallbladder towards the top left of the surgical field, providing counter-traction and exposure."</p>
-        <p style="color: #dc2626; margin-bottom: 0.5rem;"><strong>GPT-4.1:</strong> Generic descriptions without specific instruments.</p>
-        <p style="color: #ea580c; margin-bottom: 0.5rem;"><strong>Gemini-2.5-Flash:</strong> Misidentifies tool as "electrocautery hook" with incorrect actions.</p>
-        <p style="color: #d97706; margin-bottom: 0.5rem;"><strong>SFT Baseline:</strong> Identifies "grasper" but uses vague spatial terms ("right side").</p>
-        <p style="color: #059669;"><strong>MedGRPO:</strong> "The grasper, positioned primarily on the upper left, steadily holds and maintains exposure of the surgical field, retracting the gallbladder to facilitate dissection."</p>
+      <div style="background: white; padding: 1.5rem; border-radius: 10px; margin: 1rem 0; border: 1px solid #e2e8f0; font-size: 0.9rem; line-height: 1.75;">
+        <p style="color: #374151; margin-bottom: 0.6rem; padding-bottom: 0.6rem; border-bottom: 1px solid #f1f5f9;"><strong style="color: #0f172a;">Ground Truth:</strong> "The grasper consistently grips and retracts the gallbladder towards the top left of the surgical field, providing counter-traction and exposure."</p>
+        <p style="color: #dc2626; margin-bottom: 0.4rem;"><strong>GPT-4.1:</strong> Generic descriptions without specific instruments.</p>
+        <p style="color: #ea580c; margin-bottom: 0.4rem;"><strong>Gemini-2.5-Flash:</strong> Misidentifies tool as "electrocautery hook" with incorrect actions.</p>
+        <p style="color: #d97706; margin-bottom: 0.6rem;"><strong>SFT Baseline:</strong> Identifies "grasper" but uses vague spatial terms ("right side").</p>
+        <p style="color: #059669; padding-top: 0.4rem; border-top: 1px solid #f1f5f9;"><strong>MedGRPO (Ours):</strong> "The grasper, positioned primarily on the upper left, steadily holds and maintains exposure of the surgical field, retracting the gallbladder to facilitate dissection."</p>
       </div>
       <img src="static/images/qualitative.png" alt="Qualitative comparison of region captioning" class="qual-img" />
     </div>

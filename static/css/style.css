@@ -134,11 +134,11 @@ body {
 .btn-primary:hover { background: var(--blue-dark); border-color: var(--blue-dark); }
 
 .btn-dark {
-  background: #1e293b;
+  background: #334155;
   color: white;
-  border-color: #334155;
+  border-color: #64748b;
 }
-.btn-dark:hover { background: #0f172a; }
+.btn-dark:hover { background: #475569; border-color: #94a3b8; }
 
 .btn-yellow {
   background: #fef3c7;
